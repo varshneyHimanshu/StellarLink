@@ -15,7 +15,7 @@ const ProfileCard = ({ location }) => {
   const profileUserId = params.id;
   const [profileUser, setProfileUser] = useState(user);
   const dispatch = useDispatch();
-
+  // const [render,setRender] = useState(false);
   const [following, setFollowing] = useState(
     profileUser.followers.includes(user._id)
   );
@@ -39,70 +39,27 @@ const ProfileCard = ({ location }) => {
     fetchProfileUser();
   }, [profileUserId, user]);
 
+  const handleFollow = async()=>{
+    setFollowing(following => !following);
+    try{
+      if (following) {
+        await dispatch(unfollowUser(profileUserId, user));
+      } else {
+        await dispatch(followUser(profileUserId, user));
+      }
+      window.location.reload();
+    }
+    catch(error){
+      setFollowing(following => !following);
+      toast.error("Error in Doing the Operation");
+      console.log(error);
+    }
+
+  }
   useEffect(() => {
     setFollowing(profileUser.followers.includes(user._id));
-  }, [profileUser,following]);
+  }, [profileUser]);
 
-  // const handleFollow = async(req,res) => {
-  //     if(following){
-  //       try{
-  //         setFollowing((prev) => !prev);
-  //         const makecall = async(req,res)=>{
-  //           try{
-  //             await dispatch(unfollowUser(profileUser._id, user))
-  //           }
-  //           catch(error) {console.log(error);}
-  //         }
-  //         makecall();
-  //       }
-  //       catch(error){
-  //         console.log(error);
-  //       }
-  //     }
-  //     else {
-  //       try{
-  //         setFollowing((prev) => !prev);
-  //         const makecall = async(req,res)=>{
-  //           try{
-  //             await dispatch(followUser(profileUser._id, user))
-  //           }
-  //           catch(error) {console.log(error);}
-  //         }
-  //         makecall();
-  //       }
-  //       catch(error){
-  //         console.log(error);
-  //       }
-  //     }
-
-    
-  // };
-
-  const handleFollow = async () => {
-    if (!user) {
-      toast.error("You need to be logged in to follow or unfollow users.");
-      return;
-    }
-  
-    try {
-      
-      console.log(profileUser);
-  
-      const response = following
-        ?  dispatch(unfollowUser(profileUser._id, user))
-        :  dispatch(followUser(profileUser._id, user));
-  
-      if (response.error) {
-        throw new Error(response.error.message);
-      }
-
-      setFollowing((prev) => !prev);
-      window.location.reload();
-    } catch (error) {
-      console.log('Error in following/unfollowing:', error);
-      toast.error("error occured");
-    }
-  };
 
   return (
     <div className="ProfileCard">

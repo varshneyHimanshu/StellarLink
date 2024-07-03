@@ -5,14 +5,14 @@
     border: 1px solid #ccc;
     border-radius: 8px;
     border-color: aliceblue;
-    width: 250px; /* Adjust width as needed */
+    width: 300px; /* Adjust width as needed */
   }
   
   .image {
-    width: 100%; /* Fit image width to container */
+    width: 280px; /* Fit image width to container */
     max-height: 250px; /* Limit max height to avoid overflow */
     border-radius: 8px;
-    object-fit: cover; /* Ensures the image covers the entire box */
+    /* object-fit: cover; Ensures the image covers the entire box */
   }
   
   .name {
@@ -32,5 +32,5 @@
   
   .price {
     font-weight: bold;
-    color: #007bff; /* Adjust color as needed */
+    color: green; /* Adjust color as needed */
   }

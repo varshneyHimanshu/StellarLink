@@ -63,7 +63,6 @@ const Auth = () => {
       <div className="a-left">
 
         <div className="Webname">
-          <GiEagleHead size={80} style={{color:"rgb(76, 165, 255)", margin:"-10px"}}/>
           <h1>Stellar Link</h1>
           <h6>Explore the ideas throughout the world Using SteLink</h6>
         </div>

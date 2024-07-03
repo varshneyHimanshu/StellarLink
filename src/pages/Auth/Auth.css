@@ -62,3 +62,16 @@
     align-items: center;
     justify-content: center;
 }
+
+.eagle{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100px; /* Adjust as needed */
+  height: 100px; /* Adjust as needed */
+  overflow: hidden;
+  border-radius: 50%;
+  border: 2px solid #1919ee; /* Circle border color and width */
+  background: none;
+}
