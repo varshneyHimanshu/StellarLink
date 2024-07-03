@@ -5,6 +5,7 @@ import { logIn, signUp } from "../../actions/AuthActions.js";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { GiEagleHead } from "react-icons/gi";
+import toast from "react-hot-toast";
 
 const Auth = () => {
   const initialState = {
@@ -45,7 +46,13 @@ const Auth = () => {
         ? dispatch(signUp(data, navigate))
         : setConfirmPass(false);
     } else {
-      dispatch(logIn(data, navigate));
+        try{
+          dispatch(logIn(data, navigate));
+        }
+        catch(error){
+          console.log(error);
+          toast.error("Logged In failed");
+        }
     }
   };
 
@@ -54,9 +61,9 @@ const Auth = () => {
       {/* left side */}
 
       <div className="a-left">
-        <GiEagleHead size={80} color="rgb(13, 10, 196)"/>
 
         <div className="Webname">
+          <GiEagleHead size={80} style={{color:"rgb(76, 165, 255)", margin:"-10px"}}/>
           <h1>Stellar Link</h1>
           <h6>Explore the ideas throughout the world Using SteLink</h6>
         </div>

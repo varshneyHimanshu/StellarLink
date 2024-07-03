@@ -1,0 +1,36 @@
+.overall {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    border-color: aliceblue;
+    width: 250px; /* Adjust width as needed */
+  }
+  
+  .image {
+    width: 100%; /* Fit image width to container */
+    max-height: 250px; /* Limit max height to avoid overflow */
+    border-radius: 8px;
+    object-fit: cover; /* Ensures the image covers the entire box */
+  }
+  
+  .name {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-top: 0.5rem;
+  }
+  
+  .des {
+    margin-top: 0.5rem;
+  }
+  
+  .desc {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+  }
+  
+  .price {
+    font-weight: bold;
+    color: #007bff; /* Adjust color as needed */
+  }

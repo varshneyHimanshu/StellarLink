@@ -8,6 +8,7 @@ import * as ChatApi from "../../api/ChatRequests.js";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { useSelector } from "react-redux";
+import { GiEagleHead } from "react-icons/gi";
 
 const LogoSearch = ({location}) => {
   const [data,setData] = useState("");
@@ -60,7 +61,7 @@ const LogoSearch = ({location}) => {
   
   return (
     <div className="LogoSearch">
-      <img src={Logo} alt="" />
+      <GiEagleHead size={40} style={{color:"#007bff"}}/>
       <div className="Search">
           <input 
             type="text" placeholder="Search User..."

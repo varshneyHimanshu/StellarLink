@@ -1,6 +1,10 @@
 .LogoSearch {
   display: flex;
   gap: 0.75rem;
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  background-color: #fff;
 }
 .Search {
   display: flex;

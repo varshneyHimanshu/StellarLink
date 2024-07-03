@@ -6,10 +6,13 @@
   gap: 1rem;
   overflow-x: clip;
   background-color: var(--cardColor);
+  border: 1px solid #ddd;
+  padding: 1rem;
 }
 
 /* Profile Images */
-.ProfileImages {
+.ProfileImages,
+.hoemProfileImages {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -17,24 +20,47 @@
   justify-content: center;
 }
 
-.ProfileImages > img:nth-of-type(1) {
-  width: 100%;
+.ProfileImages > img:nth-of-type(1),
+.hoemProfileImages > img:nth-of-type(1) {
+  width: 95%;
+  margin-top: 10px;
+  border-radius: 25px;
+  overflow-y: hidden;
 }
-.ProfileImages > img:nth-of-type(2) {
-  width: 6rem;
+
+.ProfileImages > img:nth-of-type(1) {
+  height: 350px;
+}
+
+.hoemProfileImages > img:nth-of-type(1) {
+  height: 90%;
+}
+
+.ProfileImages > img:nth-of-type(2),
+.hoemProfileImages > img:nth-of-type(2) {
   border-radius: 50%;
   position: absolute;
   bottom: -3rem;
   box-shadow: var(--profileShadow);
 }
 
-.followMessage{
+.ProfileImages > img:nth-of-type(2) {
+  width: 7rem;
+  height: 7rem;
+}
+
+.hoemProfileImages > img:nth-of-type(2) {
+  width: 5rem;
+  height: 5rem;
+}
+
+.followMessage {
   width: 100%;
-  margin-left: 210px;
   display: flex;
   flex-direction: row;
   align-items: center;
   gap: 10px;
+  justify-content: center;
 }
 
 /* Profile Name */
@@ -48,15 +74,6 @@
 
 .ProfileName > span:nth-of-type(1) {
   font-weight: bold;
-}
-
-
-.followMessage{
-  display:flex;
-  flex-direction: row;
-  align-items: center;
-  margin-top: 3rem;
-  gap:10px;
 }
 
 /* Follow Status */
@@ -88,6 +105,7 @@
   align-items: center;
   justify-content: center;
 }
+
 .follow > span:nth-of-type(1) {
   font-weight: bold;
 }
@@ -102,14 +120,39 @@
   border-left: 2px solid var(--hrColor);
 }
 
+.ProfileCard > span {
+  font-weight: bold;
+  color: orange;
+  align-self: center;
+  margin-bottom: 1rem;
+  cursor: pointer;
+}
 
+/* Additional styling for the follow and message buttons */
+.button.fc-button {
+  padding: 10px 20px;
+  margin-top: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
 
+.button.fc-button.UnfollowButton {
+  background-color: #ff0000;
+}
 
-.ProfileCard>span
-{
-    font-weight: bold;
-    color: orange;
-    align-self: center;
-    margin-bottom: 1rem;
-    cursor: pointer;
+.button.fc-button:hover {
+  background-color: #0056b3;
+}
+
+.button.fc-button.UnfollowButton:hover {
+  background-color: #cc0000;
+}
+
+/* Styling for chat button */
+.followMessage .button.fc-button {
+  padding: 5px 15px;
+  font-size: 14px;
 }

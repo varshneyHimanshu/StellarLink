@@ -59,6 +59,7 @@ const ProfileModal = ({ modalOpened, setModalOpened, data }) => {
     }
     dispatch(updateUser(param.id, UserData));
     setModalOpened(false);
+    window.location.reload();
   };
 
   return (

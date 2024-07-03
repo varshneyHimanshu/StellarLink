@@ -19,7 +19,7 @@ const PostSide = ({location}) => {
             <PostShare/>
       }
         
-      <Posts/>
+      <Posts location={location}/>
     </div>
   );
 };

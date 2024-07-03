@@ -16,13 +16,10 @@
 
 
 /* left side */
-.a-left{
-    gap: 2rem;
-}
-
-.a-left > img {
-  width: 4rem;
-  height: 4rem;
+.Webname{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .Webname > h1 {
@@ -46,6 +43,7 @@
 
 .Webname>h6{
     font-size: 0.85rem;
+    margin-top: -20px;
 }
 
 

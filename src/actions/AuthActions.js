@@ -1,3 +1,4 @@
+import toast from "react-hot-toast";
 import * as AuthApi from "../api/AuthRequests";
 export const logIn = (formData, navigate) => async (dispatch) => {
   dispatch({ type: "AUTH_START" });
@@ -8,6 +9,7 @@ export const logIn = (formData, navigate) => async (dispatch) => {
   } catch (error) {
     console.log(error);
     dispatch({ type: "AUTH_FAIL" });
+    toast.error("No User Found");
   }
 };
 
@@ -20,6 +22,7 @@ export const signUp = (formData, navigate) => async (dispatch) => {
   } catch (error) {
     console.log(error);
     dispatch({ type: "AUTH_FAIL" });
+    toast.error("There is error in signing Up");
   }
 };
 

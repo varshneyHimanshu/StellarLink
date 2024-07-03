@@ -4,8 +4,9 @@ import Post from "../Post/Post";
 import { useSelector, useDispatch } from "react-redux";
 import "./Posts.css";
 import { useParams } from "react-router-dom";
+import { Loader } from "../Loader/Loader";
 
-const Posts = () => {
+const Posts = ({location}) => {
   const params = useParams()
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.authReducer.authData);
@@ -18,9 +19,9 @@ const Posts = () => {
   return (
     <div className="Posts">
       {loading
-        ? "Fetching posts...."
+        ? <Loader/>
         : posts.map((post, id) => {
-            return <Post data={post} key={id} />;
+            return <Post data={post} key={id} location={location}/>;
           })}
     </div>
   );

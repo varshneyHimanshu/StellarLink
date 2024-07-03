@@ -14,12 +14,6 @@ const RightSide = () => {
       <NavIcons />
       {/* TrendCard */}
       <TrendCard />
-
-      {/* Share buttong */}
-      <button className="button r-button" onClick={() => setModalOpened(true)}>
-        Share
-      </button>
-      <ShareModal modalOpened={modalOpened} setModalOpened={setModalOpened} />
     </div>
   );
 };

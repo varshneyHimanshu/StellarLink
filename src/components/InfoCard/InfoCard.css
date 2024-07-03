@@ -24,4 +24,9 @@
     height: 2rem;
     margin-top: 6rem;
     align-self: flex-end;
+    background-color: #ff0000;
+}
+.logout-button:hover{
+    background-color: white;
+    color: #ff0000;
 }
