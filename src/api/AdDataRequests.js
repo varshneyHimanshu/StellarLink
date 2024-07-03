@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-
-const API = axios.create({ baseURL: 'http://localhost:5000' });
+const port = process.env.BACKEND_URL;
+const API = axios.create({ baseURL: port });
 
 export const getAdData= (id)=> API.get(`/adData/${id}`);
