@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const port = process.env.BACKEND_URL;
+const port = process.env.REACT_APP_BACKEND_URL;
 
 
 const API = axios.create({ baseURL: port });
