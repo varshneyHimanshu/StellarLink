@@ -4,7 +4,6 @@ import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import * as UserApi from "../../api/UserRequests.js";
 import { followUser, unfollowUser } from "../../actions/UserAction";
-import { findChat } from "../../api/ChatRequests.js";
 import toast from "react-hot-toast";
 
 const ProfileCard = ({ location }) => {
@@ -20,6 +19,25 @@ const ProfileCard = ({ location }) => {
     profileUser.followers.includes(user._id)
   );
   const [loading, setLoading] = useState(false); // To prevent multiple rapid clicks
+  const handleFollow = async()=>{
+    setFollowing(following => !following);
+    try{
+      if(!following){
+        (await UserApi.followUser(profileUserId,user));
+        console.log(following);
+      }
+      else{
+        await UserApi.unfollowUser(profileUserId,user);
+        console.log(following);
+      }
+      window.location.reload();
+    }
+    catch(error){
+      setFollowing(following => !following);
+      toast.error("Error in doing the operation",error);
+    }
+
+  }
 
   useEffect(() => {
     const fetchProfileUser = async () => {
@@ -39,23 +57,6 @@ const ProfileCard = ({ location }) => {
     fetchProfileUser();
   }, [profileUserId, user]);
 
-  const handleFollow = async()=>{
-    setFollowing(following => !following);
-    try{
-      if (following) {
-        await dispatch(unfollowUser(profileUserId, user));
-      } else {
-        await dispatch(followUser(profileUserId, user));
-      }
-      window.location.reload();
-    }
-    catch(error){
-      setFollowing(following => !following);
-      toast.error("Error in Doing the Operation");
-      console.log(error);
-    }
-
-  }
   useEffect(() => {
     setFollowing(profileUser.followers.includes(user._id));
   }, [profileUser]);
@@ -152,6 +153,7 @@ const ProfileCard = ({ location }) => {
         </span>
       )}
     </div>
+    
   );
 };
 
