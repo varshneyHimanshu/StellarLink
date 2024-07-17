@@ -1,8 +1,9 @@
 .TrendCard{
     display: flex;
     flex-direction: column;
+    place-items: center;
     gap: 0px;
-    width: 285px;
+    width: 90%;
     background-color: var(--cardColor);
     padding: 1rem;
     border-radius: 1rem;

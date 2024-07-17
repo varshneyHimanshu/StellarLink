@@ -1,7 +1,7 @@
 .Home {
   position: relative;
   display: grid;
-  grid-template-columns: 18rem auto 20rem;
+  grid-template-columns: 22% auto 26%;
   gap: 1rem;
   height: 100vh;
   overflow-y: scroll;

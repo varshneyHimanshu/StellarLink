@@ -104,7 +104,7 @@ const Post = ({ data,location }) => {
 
       <img
         src={data.image ? process.env.REACT_APP_PUBLIC_FOLDER + data.image : ""}
-        alt=""
+        alt="" className="image-a"
       />
 
       <div className="detail">

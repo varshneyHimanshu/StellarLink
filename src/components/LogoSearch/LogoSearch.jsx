@@ -61,7 +61,6 @@ const LogoSearch = ({location}) => {
   
   return (
     <div className="LogoSearch">
-      <GiEagleHead size={40} style={{color:"#007bff"}}/>
       <div className="Search">
           <input 
             type="text" placeholder="Search User..."

@@ -3,15 +3,16 @@
     flex-direction: column;
     justify-content: center;
     border: 1px solid #ccc;
+    place-items: center;
     border-radius: 8px;
     border-color: aliceblue;
-    width: 300px; /* Adjust width as needed */
+    width: 100%; /* Adjust width as needed */
   }
   
   .image {
-    width: 280px; /* Fit image width to container */
-    max-height: 250px; /* Limit max height to avoid overflow */
-    border-radius: 8px;
+    width: 80%; /* Fit image width to container */
+    max-height: 80%; /* Limit max height to avoid overflow */
+    border-radius: 1%;
     /* object-fit: cover; Ensures the image covers the entire box */
   }
   
@@ -19,18 +20,22 @@
     font-size: 1.2rem;
     font-weight: bold;
     margin-top: 0.5rem;
+    place-content: center;
   }
   
   .des {
+    place-content: center;
     margin-top: 0.5rem;
   }
   
   .desc {
+    place-content: center;
     margin-top: 0.5rem;
     font-size: 0.9rem;
   }
   
   .price {
+    place-content: center;
     font-weight: bold;
     color: green; /* Adjust color as needed */
   }
