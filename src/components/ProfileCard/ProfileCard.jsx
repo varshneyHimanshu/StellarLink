@@ -3,54 +3,55 @@ import "./ProfileCard.css";
 import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import * as UserApi from "../../api/UserRequests.js";
-import { followUser, unfollowUser } from "../../actions/UserAction";
 import toast from "react-hot-toast";
 
-const ProfileCard = ({ location }) => {
+const ProfileCard = ({ location, setIsFollowing }) => {
   const { user } = useSelector((state) => state.authReducer.authData);
   const params = useParams();
   const posts = useSelector((state) => state.postReducer.posts);
   const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER;
   const profileUserId = params.id;
   const [profileUser, setProfileUser] = useState(user);
+  const [following, setFollowing] = useState(profileUser.followers.includes(user._id));
+  const [followersCount, setFollowersCount] = useState(profileUser.followers ? profileUser.followers.length : 0);
+  const [followingCount, setFollowingCount] = useState(profileUser.following ? profileUser.following.length : 0);
+  const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
-  // const [render,setRender] = useState(false);
-  const [following, setFollowing] = useState(
-    profileUser.followers.includes(user._id)
-  );
-  const [loading, setLoading] = useState(false); // To prevent multiple rapid clicks
-  const handleFollow = async()=>{
-    setFollowing(following => !following);
-    try{
-      if(!following){
-        (await UserApi.followUser(profileUserId,user));
-        console.log(following);
-      }
-      else{
-        await UserApi.unfollowUser(profileUserId,user);
-        console.log(following);
-      }
-      window.location.reload();
-    }
-    catch(error){
-      setFollowing(following => !following);
-      toast.error("Error in doing the operation",error);
-    }
 
-  }
+  const handleFollow = async () => {
+    setLoading(true);
+    try {
+      if (!following) {
+        await UserApi.followUser(profileUserId, user);
+      } else {
+        await UserApi.unfollowUser(profileUserId, user);
+      }
+      // Fetch updated profile user data
+      const updatedProfileUser = (await UserApi.getUser(profileUserId)).data;
+      setProfileUser(updatedProfileUser);
+      setFollowing(!following);
+      setFollowersCount(updatedProfileUser.followers.length);
+      setFollowingCount(updatedProfileUser.following.length);
+      setIsFollowing(state => !state);
+    } catch (error) {
+      setFollowing(following);
+      toast.error("Error in doing the operation");
+    }
+    setLoading(false);
+  };
 
   useEffect(() => {
     const fetchProfileUser = async () => {
-      try{
+      try {
         if (profileUserId === user._id) {
           setProfileUser(user);
         } else {
           const profileUser = (await UserApi.getUser(profileUserId)).data;
           setProfileUser(profileUser);
+          setFollowersCount(profileUser.followers.length);
+          setFollowingCount(profileUser.following.length);
         }
-      }
-      catch(error){
-        console.log("here");
+      } catch (error) {
         console.log(error);
       }
     };
@@ -59,6 +60,8 @@ const ProfileCard = ({ location }) => {
 
   useEffect(() => {
     setFollowing(profileUser.followers.includes(user._id));
+    setFollowersCount(profileUser.followers.length);
+    setFollowingCount(profileUser.following.length);
   }, [profileUser]);
 
 
@@ -113,14 +116,14 @@ const ProfileCard = ({ location }) => {
         <div>
           <div className="follow">
             <span>
-              {profileUser.followers ? profileUser.followers.length : 0}
+              {followersCount}
             </span>
             <span>Followers</span>
           </div>
           <div className="vl"></div>
           <div className="follow">
             <span>
-              {profileUser.following ? profileUser.following.length : 0}
+              {followingCount}
             </span>
             <span>Following</span>
           </div>

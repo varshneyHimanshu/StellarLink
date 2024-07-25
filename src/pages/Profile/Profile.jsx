@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import PostSide from "../../components/PostSide/PostSide";
 import ProfileCard from "../../components/ProfileCard/ProfileCard";
 import ProfileLeft from "../../components/ProfileLeft/ProfileLeft";
@@ -12,13 +12,14 @@ const Profile = () => {
   const params = useParams();
   const profileUserId = params.id;
   const { user } = useSelector((state) => state.authReducer.authData);
+  const [isfollowing,setIsFollowing] = useState(false);
 
   return (
     <div className="Profile">
       <ProfileLeft />
       <div className="Profile-center">
-        <ProfileCard location = 'profilePage'/>
-        <PostSide location="profilePage"/>
+        <ProfileCard location = 'profilePage' setIsFollowing = {setIsFollowing}/>
+        <PostSide location="profilePage" isfollowing = {isfollowing}/>
       </div>
       <RightSide/>
     </div>

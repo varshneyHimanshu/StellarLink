@@ -5,7 +5,7 @@ import "./PostSide.css";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-const PostSide = ({location}) => {
+const PostSide = ({location, isfollowing}) => {
   const params = useParams();
   const profileUserId = params.id;
   const { user } = useSelector((state) => state.authReducer.authData);
@@ -19,7 +19,7 @@ const PostSide = ({location}) => {
             <PostShare/>
       }
         
-      <Posts location={location}/>
+      <Posts location={location} isfollowing = {isfollowing}/>
     </div>
   );
 };

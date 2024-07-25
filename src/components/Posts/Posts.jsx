@@ -6,15 +6,15 @@ import "./Posts.css";
 import { useParams } from "react-router-dom";
 import { Loader } from "../Loader/Loader";
 
-const Posts = ({location}) => {
+const Posts = ({location,isfollowing}) => {
   const params = useParams()
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.authReducer.authData);
   let { posts, loading } = useSelector((state) => state.postReducer);
   useEffect(() => {
     dispatch(getTimelinePosts(user._id));
-  }, []);
-  if(!posts){console.log("no post"); return 'No Posts'};
+  }, [isfollowing]);
+  if(!posts){console.log("no post"); return <div>No Posts</div>};
   if(params.id) posts = posts.filter((post)=> post.userId===params.id)
   return (
     <div className="Posts">
