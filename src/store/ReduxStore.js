@@ -30,6 +30,11 @@ const persistedState = loadFromLocalStorage();
 
 const store = createStore(reducers, persistedState, composeEnhancers(applyMiddleware(thunk)));
 
-store.subscribe(() => saveToLocalStorage(store.getState()));
+// composeEnhancers(applyMiddleware(thunk)): Enhances the store with middleware and the Redux DevTools extension.
+// applyMiddleware(thunk): Adds middleware to the store, in this case, thunk, which allows you to write action 
+// creators that return a function instead of an action. This is useful for handling asynchronous actions like API calls.
+
+store.subscribe(() => saveToLocalStorage(store.getState()));  
+//runs every time an action is dispatched to the Redux store, causing the state to change. Here's what happens in simpler terms
 
 export default store;
